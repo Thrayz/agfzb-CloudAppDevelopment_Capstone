@@ -27,7 +27,7 @@ DEBUG = True
 
 APPEND_SLASH = True
 
-ALLOWED_HOSTS = ['htdm.eu-gb.mybluemix.net',"localhost","127.0.0.1","127.0.0.1:8000"]
+ALLOWED_HOSTS = ["localhost",'htdm.eu-gb.mybluemix.net',"127.0.0.1","127.0.0.1:8000"]
 
 
 # Application definition
