@@ -33,8 +33,10 @@ def login_request(request):
         username=request.POST['username']
         password=request.POST['psw']
         user=authenticate(username=username,password=password)
+   if user is not None:
         login(request,user)
-        return redirect('djangoapp:home')   
+        return redirect('djangoapp:index')
+           
    else:
         return render(request, 'djangoapp/registration.html', {})
 
@@ -43,7 +45,7 @@ def login_request(request):
 def logout_request(request):
     print("Log out the user `{}`".format(request.user.username))
     logout(request)
-    return redirect('djangoapp:home')
+    return redirect('djangoapp:index')
 
 
 # Create a `registration_request` view to handle sign up request
@@ -69,7 +71,7 @@ def registration_request(request):
                                             password=password)
  
                     login(request, user)
-                    return redirect('djangoapp:home')
+                    return redirect('djangoapp:index')
     
     else:
         return render(request, 'djangoapp/registration.html', {})
