@@ -3,22 +3,25 @@ from django.utils.timezone import now
 
 
 # Create your models here.
+class CarMake(models.Model):
+    Name = models.CharField(max_length=200)
+    Description = models.CharField(max_length=200)
+    def __str__(self):
+        return self.Name , self.Description
+class CarModel(models.Model):
+    CHOICES = (
+    ('1', ' Sedan'),
+    ('2', 'SUV'),
+    ('3', ' WAGON'),
+    
 
-# <HINT> Create a Car Make model `class CarMake(models.Model)`:
-# - Name
-# - Description
-# - Any other fields you would like to include in car make model
-# - __str__ method to print a car make object
-
-
-# <HINT> Create a Car Model model `class CarModel(models.Model):`:
-# - Many-To-One relationship to Car Make model (One Car Make has many Car Models, using ForeignKey field)
-# - Name
-# - Dealer id, used to refer a dealer created in cloudant database
-# - Type (CharField with a choices argument to provide limited choices such as Sedan, SUV, WAGON, etc.)
-# - Year (DateField)
-# - Any other fields you would like to include in car model
-# - __str__ method to print a car make object
+)
+    carmodel = models.ForeignKey(CarMake,on_delete=models.CASCADE)
+    Dealer_id = models.IntegerField()
+    Type = models.CharField(max_length=200,choices=CHOICES)
+    year =  models.DateField()
+    def __str__(self):
+        return self.carmodel , self.Type ,self.year
 
 
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
