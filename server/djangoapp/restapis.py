@@ -10,10 +10,7 @@ from requests.auth import HTTPBasicAuth
 # e.g., response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
 #                                     auth=HTTPBasicAuth('apikey', api_key))
 
-import requests
-import json
-from .models import CarDealer
-from requests.auth import HTTPBasicAuth
+
 
 def get_request(url, **kwargs):
     print(kwargs)
@@ -43,7 +40,8 @@ def get_dealers_from_cf(url, **kwargs):
     json_result = get_request(url)
     if json_result:
         # Get the row list in JSON as dealers
-        dealers = json_result["rows"]
+        dealers1 = json_result["dbs"]
+        dealers = dealers1["rows"]
         # For each dealer object
         for dealer in dealers:
             # Get its content in `doc` object
